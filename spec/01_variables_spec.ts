@@ -157,4 +157,67 @@ describe('variables and constants', () => {
             });
         });
     });
+
+    describe('objects and sestructuing of objects', () => {
+        describe('object literals', () => {
+            interface Movie { title: string, director: string };
+            const movie: Movie = {
+                title: "The last jedi",
+                director: 'Rian Johnson'
+            };
+
+            const movie2: Movie = {
+                title: "Thor Ragnorak",
+                director: 'Taika Waititi'
+            };
+
+
+        });
+        it('duck typing', () => {
+            interface PhoneCallType {
+                message: string,
+                from?: string
+            }
+            function doIt(thing: PhoneCallType) {
+                console.log(thing.message);
+            }
+
+            // doIt("Tacos");
+            // doIt();
+            // doIt({message: 'Call your mom'}, 1, 2, 3);
+            doIt({ message: 'Call your mom' });
+
+            const phoneCall = {
+                from: 'Jenny',
+                when: 'noon',
+                callbackNumber: '867-5309',
+                message: 'Pay me!'
+            }
+
+            doIt(phoneCall);
+
+            class PhoneCall implements PhoneCallType {
+
+                constructor(public message: string, public from: string, private when: string) {
+                    //
+                }
+
+                getInfo() {
+                    return `Call from ${this.from}. Message ${this.message} at ${this.when}`;
+                }
+            }
+
+            const pc1 = new PhoneCall('Wash Car', 'Carol', 'noon');
+            console.log(pc1.getInfo());
+
+            doIt(pc1);
+
+            const pc2: PhoneCallType = {
+                message: 'Hurry home!',
+                from: 'stacey'
+            }
+
+            const { from, message: msg } = pc2;
+        });
+    });
 });
