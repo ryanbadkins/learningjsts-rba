@@ -25,7 +25,26 @@ describe('functions', () => {
             }
         });
         it('passing arguments to functions', () => {
+            function formatName(first: string, last: string, mi?: string): string {
+                let fullName = `${last}, ${first}`;
+                if (mi) {
+                    fullName += ` ${mi}.`;
+                }
+                return fullName;
+            }
+            expect("dog").toBeTruthy();
+            expect(formatName('Han', 'Solo')).toBe('Solo, Han');
+            expect(formatName('Han', 'Solo', 'D')).toBe('Solo, Han D.');
+        });
 
+        it('using rest parameters', () => {
+            function add(a: number, b: number, ...rest: number[]) {
+                const firstTwo = a + b;
+                return rest.reduce((s, n) => s + n, firstTwo);
+            }
+
+            expect(add(2, 1)).toBe(3);
+            expect(add(2, 2, 2)).toBe(6);
         });
     });
 });
