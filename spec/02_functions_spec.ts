@@ -1,3 +1,4 @@
+import * as formatters from "../src/formatters";
 describe('functions', () => {
     describe('function literals', () => {
         it('has a couple of kinds', () => {
@@ -45,6 +46,15 @@ describe('functions', () => {
 
             expect(add(2, 1)).toBe(3);
             expect(add(2, 2, 2)).toBe(6);
+        });
+    });
+    describe('higher order functions', () => {
+        /*takes one or more functons as arguments, or returns a function as it's result*/
+        it('takes a function as an argument', () => {
+
+            const answer = formatters.formatName('ryan', 'adkins');
+            expect(answer).toBe('adkins, ryan');
+            expect(formatters.PI).toBe(3.141569);
         });
     });
 });
